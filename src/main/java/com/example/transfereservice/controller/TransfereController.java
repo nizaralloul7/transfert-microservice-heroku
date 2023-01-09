@@ -81,8 +81,8 @@ public class TransfereController
         return transfereService.getAllTransferesByClient(cinDonneur);
     }
 
-    @PostMapping(path="/payerGab")
-    public TransfereResponse payerTransfereGab(@RequestBody String reference, @RequestBody String transferePin)
+    @PostMapping(path="/payerGab/{reference}")
+    public TransfereResponse payerTransfereGab(@PathVariable String reference, @RequestBody String transferePin)
     {
         return transfereService.payerTransfereGab(reference, transferePin);
     }
