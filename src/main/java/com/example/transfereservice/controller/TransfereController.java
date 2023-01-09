@@ -92,4 +92,10 @@ public class TransfereController
     {
         return transfereService.getAllTransferesByAgent(cin);
     }
+
+    @PostMapping("/generate-otp")
+    public String generateOTP()
+    {
+        return transfereService.generateOTP();
+    }
 }

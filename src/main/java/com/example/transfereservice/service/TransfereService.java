@@ -148,20 +148,19 @@ public class TransfereService
             AuthenticationResponse authenticationResponse = salesforceApiConnect.login();
             salesforceApiConnect.updateTransfere(authenticationResponse.getAccess_token(), authenticationResponse.getInstance_url(),transfere);
         }
-
-        if(!transfere.getDateExpiration().after(new Date()))
+        else if(!transfere.getDateExpiration().after(new Date()))
             throw new IllegalStateException("Transfere expiré");
 
-        if(!cin.equalsIgnoreCase(transfere.getReferenceClientBeneficiaire()))
+        else if(!cin.equalsIgnoreCase(transfere.getReferenceClientBeneficiaire()))
             throw new IllegalStateException("Cin fourni invalide");
 
-        if(transfere.getStatus() == StatusTransfere.PAYE)
+        else if(transfere.getStatus() == StatusTransfere.PAYE)
             throw new IllegalStateException("Transfere déjà payé");
 
-        if(transfere.getStatus() == StatusTransfere.BLOQUE)
+        else if(transfere.getStatus() == StatusTransfere.BLOQUE)
             throw new IllegalStateException("Transfere bloqué");
 
-        if(transfere.getStatus() == StatusTransfere.EXTOURNE)
+        else if(transfere.getStatus() == StatusTransfere.EXTOURNE)
             throw new IllegalStateException("Transfere extourné");
     }
 
@@ -169,9 +168,10 @@ public class TransfereService
     {
         Transfere transfere = transfereRepository.findTransfereByReference(reference).get();
 
-        System.out.println("transfere pi nfrom bdd : " + transfere.getCodePinTransfere());
+        /*System.out.println("transfere pi nfrom bdd : " + transfere.getCodePinTransfere());
         System.out.println("transfere pin from api call " + pinTransfere);
         System.out.println("Client beneficiaire : " + transfere.getReferenceClientBeneficiaire());
+         */
 
         if(!pinTransfere.equalsIgnoreCase(transfere.getCodePinTransfere()))
             throw new IllegalStateException("Pin incorrect");
@@ -285,6 +285,35 @@ public class TransfereService
     public List<Transfere> getAllTransferesByAgent(String agentCin)
     {
         return transfereRepository.findTransfereByReferenceAgent(agentCin);
+    }
+
+    public String generateOTP()
+    {
+        Random random = new Random();
+        String pin = String.valueOf(1000 + random.nextInt(9000));
+
+        VonageClient vonageClient = VonageClient.builder()
+                .apiSecret("V06izjgFYQ2LTK2Q")
+                .apiKey("45604df1")
+                .build();
+
+        String SMSBody = "Voici votre code de confirmation : " + pin;
+
+
+        TextMessage message = new TextMessage("SPEED CASH", "+212632938333", SMSBody);
+        //SmsSubmissionResponse response = vonageClient.getSmsClient().submitMessage(message);
+
+        /*if (response.getMessages().get(0).getStatus() == MessageStatus.OK)
+        {
+            System.out.println("Message sent successfully.");
+        }
+        else
+        {
+            System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
+        }
+         */
+
+        return pin;
     }
 
 }
