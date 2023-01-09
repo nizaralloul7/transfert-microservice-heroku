@@ -169,6 +169,9 @@ public class TransfereService
     {
         Transfere transfere = transfereRepository.findTransfereByReference(reference).get();
 
+        System.out.println("transfere pi nfrom bdd : " + transfere.getCodePinTransfere());
+        System.out.println("transfere pin from api call " + pinTransfere);
+
         if(pinTransfere != transfere.getCodePinTransfere())
             throw new IllegalStateException("Pin incorrect");
 
