@@ -96,6 +96,7 @@ public class TransfereController
     @PostMapping("/generate-otp")
     public String generateOTP()
     {
+        //otp
         return transfereService.generateOTP();
     }
 }
