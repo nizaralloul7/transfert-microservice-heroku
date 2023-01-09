@@ -70,7 +70,7 @@ public class TransfereController
     }
 
     @PostMapping(path ="/extourner")
-    public void extournerTransfere(@RequestBody String reference, @RequestBody String motif)
+    public void extournerTransfere(@RequestParam String reference, @RequestParam String motif)
     {
         transfereService.extournerTransfere(reference, motif);
     }
@@ -82,7 +82,7 @@ public class TransfereController
     }
 
     @PostMapping(path="/payerGab/{reference}")
-    public TransfereResponse payerTransfereGab(@PathVariable String reference, @RequestBody String transferePin)
+    public TransfereResponse payerTransfereGab(@PathVariable String reference, @RequestParam String transferePin)
     {
         return transfereService.payerTransfereGab(reference, transferePin);
     }
