@@ -171,6 +171,7 @@ public class TransfereService
 
         System.out.println("transfere pi nfrom bdd : " + transfere.getCodePinTransfere());
         System.out.println("transfere pin from api call " + pinTransfere);
+        System.out.println("Client beneficiaire : " + transfere.getReferenceClientBeneficiaire());
 
         if(!pinTransfere.equalsIgnoreCase(transfere.getCodePinTransfere()))
             throw new IllegalStateException("Pin incorrect");
