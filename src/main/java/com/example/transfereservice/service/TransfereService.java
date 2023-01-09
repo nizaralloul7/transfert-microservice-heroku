@@ -180,7 +180,7 @@ public class TransfereService
             transfere.setStatus(StatusTransfere.PAYE);
             transfereRepository.save(transfere);
             TransfereResponse transfereResponse = new TransfereResponse();
-            Client clientBeneficiaire = restTemplate.getForObject("http://client-service/clients/ref/"+transfere.getReferenceClientBeneficiaire(), Client.class);
+            Client clientBeneficiaire = restTemplate.getForObject("http://client-service/client/get-client-cin/"+transfere.getReferenceClientBeneficiaire(), Client.class);
 
             transfereResponse.setAmount(transfere.getMontant());
             transfereResponse.setClientBeneficiare(clientBeneficiaire.getNom() + " " + clientBeneficiaire.getPrenom());
