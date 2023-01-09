@@ -172,10 +172,10 @@ public class TransfereService
         System.out.println("transfere pi nfrom bdd : " + transfere.getCodePinTransfere());
         System.out.println("transfere pin from api call " + pinTransfere);
 
-        if(pinTransfere != transfere.getCodePinTransfere())
+        if(!pinTransfere.equalsIgnoreCase(transfere.getCodePinTransfere()))
             throw new IllegalStateException("Pin incorrect");
 
-        if(transfere.getDateExpiration().after(new Date()) && transfere.getStatus() == StatusTransfere.A_SERVIR && pinTransfere == transfere.getCodePinTransfere())
+        if(transfere.getDateExpiration().after(new Date()) && transfere.getStatus() == StatusTransfere.A_SERVIR && pinTransfere.equalsIgnoreCase(transfere.getCodePinTransfere()))
         {
             transfere.setStatus(StatusTransfere.PAYE);
             transfereRepository.save(transfere);
