@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path ="/api/transfere")
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
 public class TransfereController
 {
     private final TransfereService transfereService;
