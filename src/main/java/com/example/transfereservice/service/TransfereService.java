@@ -310,6 +310,8 @@ public class TransfereService
 
         String SMSBody = "Voici votre code de confirmation : " + pin;
 
+        System.out.println("PIN SMS : " + pin);
+
 
         TextMessage message = new TextMessage("SPEED CASH", "+212632938333", SMSBody);
         //SmsSubmissionResponse response = vonageClient.getSmsClient().submitMessage(message);
