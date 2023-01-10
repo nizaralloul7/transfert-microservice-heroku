@@ -142,14 +142,14 @@ public class TransfereService
         }
     }
 
-    public void payerTransfere(String reference, String cin)
+    public void payerTransfere(String reference)
     {
         Transfere transfere = transfereRepository.findTransfereByReference(reference).get();
 
         if(transfere == null)
             throw new IllegalStateException("Tranfere introuvable!");
 
-        if(transfere.getDateExpiration().after(new Date()) && cin.equalsIgnoreCase(transfere.getReferenceClientBeneficiaire()) && transfere.getStatus() == StatusTransfere.A_SERVIR)
+        if(transfere.getDateExpiration().after(new Date()) && transfere.getStatus() == StatusTransfere.A_SERVIR)
         {
             transfere.setStatus(StatusTransfere.PAYE);
             transfereRepository.save(transfere);
@@ -160,9 +160,6 @@ public class TransfereService
         }
         else if(!transfere.getDateExpiration().after(new Date()))
             throw new IllegalStateException("Transfere expiré");
-
-        else if(!cin.equalsIgnoreCase(transfere.getReferenceClientBeneficiaire()))
-            throw new IllegalStateException("Cin fourni invalide");
 
         else if(transfere.getStatus() == StatusTransfere.PAYE)
             throw new IllegalStateException("Transfere déjà payé");

@@ -53,9 +53,9 @@ public class TransfereController
     }
 
     @PostMapping(path ="/payerTransfere")
-    public void payerTransfere(@RequestParam("reference") String reference, @RequestParam("cin") String cin)
+    public void payerTransfere(@RequestParam("reference") String reference)
     {
-        transfereService.payerTransfere(reference, cin);
+        transfereService.payerTransfere(reference);
     }
 
     @PostMapping(path ="/bloquer/{reference}")
