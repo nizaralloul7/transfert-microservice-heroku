@@ -114,9 +114,9 @@ public class TransfereService
         }
 
         TextMessage message = new TextMessage("SPEED CASH", "+212632938333", SMSBody);
-        //SmsSubmissionResponse response = vonageClient.getSmsClient().submitMessage(message);
+        SmsSubmissionResponse response = vonageClient.getSmsClient().submitMessage(message);
 
-        /*if (response.getMessages().get(0).getStatus() == MessageStatus.OK)
+        if (response.getMessages().get(0).getStatus() == MessageStatus.OK)
         {
             System.out.println("Message sent successfully.");
         }
@@ -124,7 +124,7 @@ public class TransfereService
         {
             System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
         }
-         */
+
 
         transfereRepository.save(transfere);
         AuthenticationResponse authenticationResponse = salesforceApiConnect.login();
@@ -318,9 +318,9 @@ public class TransfereService
 
 
         TextMessage message = new TextMessage("SPEED CASH", "+212632938333", SMSBody);
-        //SmsSubmissionResponse response = vonageClient.getSmsClient().submitMessage(message);
+        SmsSubmissionResponse response = vonageClient.getSmsClient().submitMessage(message);
 
-        /*if (response.getMessages().get(0).getStatus() == MessageStatus.OK)
+        if (response.getMessages().get(0).getStatus() == MessageStatus.OK)
         {
             System.out.println("Message sent successfully.");
         }
@@ -328,7 +328,7 @@ public class TransfereService
         {
             System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
         }
-         */
+
         JSONObject json = new JSONObject();
         json.put("pin", pin);
 
