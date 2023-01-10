@@ -100,4 +100,10 @@ public class TransfereController
         //otp
         return transfereService.generateOTP();
     }
+
+    @PostMapping("/search")
+    public Transfere searchTransfereByRefAndClientDonneur(@RequestParam String reference, @RequestParam String cinDonneur)
+    {
+        return transfereService.searchTransfereByRefAndClientDonneur(reference, cinDonneur);
+    }
 }

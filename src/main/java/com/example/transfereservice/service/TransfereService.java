@@ -330,4 +330,16 @@ public class TransfereService
         return pin;
     }
 
+    public Transfere searchTransfereByRefAndClientDonneur(String reference, String cinDonneur)
+    {
+        Transfere transfere = transfereRepository.findTransfereByReference(reference).get();
+
+        if(transfere==null)
+            throw new IllegalStateException("Transfere inexistant");
+        else if(!cinDonneur.equalsIgnoreCase(transfere.getReferenceClientDonneur()))
+            throw new IllegalStateException("cinDonneur invalide");
+
+        return transfere;
+    }
+
 }
