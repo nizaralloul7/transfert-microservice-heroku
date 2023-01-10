@@ -101,8 +101,8 @@ public class TransfereService
         //todo : Envoi SMS au client donneur avec la reference de la transaction et le code pin using Twilio ou Vonage API
 
         VonageClient vonageClient = VonageClient.builder()
-                .apiSecret("V06izjgFYQ2LTK2Q")
-                .apiKey("45604df1")
+                .apiSecret("k1h1d9QWFoXuflCj")
+                .apiKey("02b01848")
                 .build();
 
         String SMSBody = "Cher client, vote réference de transfert est : " + reference  + " d'un montant de "+ transfereRequest.getMontant() +
@@ -308,8 +308,8 @@ public class TransfereService
         String pin = String.valueOf(1000 + random.nextInt(9000));
 
         VonageClient vonageClient = VonageClient.builder()
-                .apiSecret("V06izjgFYQ2LTK2Q")
-                .apiKey("45604df1")
+                .apiSecret("k1h1d9QWFoXuflCj")
+                .apiKey("02b01848")
                 .build();
 
         String SMSBody = "Voici votre code de confirmation : " + pin;
