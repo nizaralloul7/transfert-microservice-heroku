@@ -278,9 +278,13 @@ public class TransfereService
             throw new IllegalStateException("Transfere déjà payé !");
 
         transfere.setStatus(StatusTransfere.EXTOURNE);
+        transfereRepository.save(transfere);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Double> request = new HttpEntity<>(agent.getPlafond(), headers);
         agent.setPlafond(agent.getPlafond() + transfere.getMontant());
 
-        restTemplate.postForObject("http://agent-service/api/agent/"+agent.getCin(), agent.getPlafond(), Void.class);
+        restTemplate.postForObject("http://agent-service/api/agent/"+agent.getCin(), request, Void.class);
 
         //update salesforce
         AuthenticationResponse authenticationResponse = salesforceApiConnect.login();
