@@ -9,12 +9,15 @@ import com.example.transfereservice.model.Transfere;
 import com.example.transfereservice.repository.TransfereRepository;
 import com.example.transfereservice.salesforce.AuthenticationResponse;
 import com.example.transfereservice.salesforce.SalesforceApiConnect;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.vonage.client.VonageClient;
 import com.vonage.client.sms.MessageStatus;
 import com.vonage.client.sms.SmsSubmissionResponse;
 import com.vonage.client.sms.messages.TextMessage;
+import lombok.SneakyThrows;
+import org.json.simple.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -298,6 +301,7 @@ public class TransfereService
         return transfereRepository.findTransfereByReferenceAgent(agentCin);
     }
 
+    @SneakyThrows
     public String generateOTP()
     {
         Random random = new Random();
@@ -325,8 +329,10 @@ public class TransfereService
             System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
         }
          */
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(pin);
 
-        return pin;
+        return json;
     }
 
     public Transfere searchTransfereByRefAndClientDonneur(String reference, String cinDonneur)
