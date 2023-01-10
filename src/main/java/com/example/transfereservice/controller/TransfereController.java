@@ -71,9 +71,9 @@ public class TransfereController
     }
 
     @PostMapping(path ="/extourner")
-    public void extournerTransfere(@RequestParam String reference, @RequestParam String motif)
+    public void extournerTransfere(@RequestParam String reference)
     {
-        transfereService.extournerTransfere(reference, motif);
+        transfereService.extournerTransfere(reference);
     }
 
     @GetMapping(path ="/AllTransfer/{cinDonneur}")

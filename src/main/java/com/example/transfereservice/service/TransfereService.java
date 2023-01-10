@@ -262,7 +262,7 @@ public class TransfereService
             throw new IllegalStateException("error, transfere introuvable");
     }
 
-    public void extournerTransfere(String reference, String motif)
+    public void extournerTransfere(String reference)
     {
         Transfere transfere = transfereRepository.findTransfereByReference(reference).get();
 
