@@ -124,7 +124,13 @@ public class TransfereService
 
         transfereRepository.save(transfere);
         AuthenticationResponse authenticationResponse = salesforceApiConnect.login();
-        salesforceApiConnect.addTransfere(authenticationResponse.getAccess_token(), authenticationResponse.getInstance_url(),transfere);
+
+        if(transfereRequest.getCreationOrigin().equalsIgnoreCase("org"))
+        {
+            salesforceApiConnect.updateTransfere(authenticationResponse.getAccess_token(), authenticationResponse.getInstance_url(),transfere);
+        }
+        else
+            salesforceApiConnect.addTransfere(authenticationResponse.getAccess_token(), authenticationResponse.getInstance_url(),transfere);
     }
 
     public void transfereMultiple(List<TransfereRequest> listTransfers)

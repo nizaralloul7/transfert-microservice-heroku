@@ -18,5 +18,6 @@ public class TransfereRequest
     private String referenceClientDonneur;
     private String referenceClientBeneficiaire;
     private String modePayement;
+    private String creationOrigin;
 
 }
