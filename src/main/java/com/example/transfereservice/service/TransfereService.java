@@ -266,7 +266,7 @@ public class TransfereService
     {
         Transfere transfere = transfereRepository.findTransfereByReference(reference).get();
 
-        Agent agent = restTemplate.getForObject("http://agent-service/agents/ref/"+transfere.getReferenceAgent(), Agent.class);
+        Agent agent = restTemplate.getForObject("http://agent-service/agent/ref/"+transfere.getReferenceAgent(), Agent.class);
 
         if(transfere == null)
             throw new IllegalStateException("Transfere introuvable !");
