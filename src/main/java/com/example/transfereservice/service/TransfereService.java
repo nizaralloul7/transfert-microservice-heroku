@@ -43,6 +43,9 @@ public class TransfereService
 
     public void placeTransfere(TransfereRequest transfereRequest)
     {
+
+        System.out.println("agent ref from salesforce : " + transfereRequest.getReferenceAgent());
+
         Agent agent = restTemplate.getForObject("http://agent-service/api/agent/ref/"+transfereRequest.getReferenceAgent(), Agent.class);
         //Agent agent1 = new Agent("nizar", "alloul", "ee865477", "0667848465", new Date(), 1500);
 
