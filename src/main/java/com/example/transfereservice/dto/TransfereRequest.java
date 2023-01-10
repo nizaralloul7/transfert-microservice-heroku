@@ -19,5 +19,6 @@ public class TransfereRequest
     private String referenceClientBeneficiaire;
     private String modePayement;
     private String creationOrigin;
+    private String salesforceId;
 
 }

@@ -34,4 +34,5 @@ public class Transfere
     @JsonIgnore
     private String codePinTransfere;
     private String moyenDeTransfert;
+    private String salesforceId;
 }

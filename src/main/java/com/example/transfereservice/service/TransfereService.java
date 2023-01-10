@@ -86,6 +86,7 @@ public class TransfereService
                 .status(StatusTransfere.A_SERVIR)
                 .codePinTransfere(pin)
                 .moyenDeTransfert(transfereRequest.getModePayement())
+                .salesforceId(transfereRequest.getSalesforceId())
                 .build();
 
         agent.setPlafond(agent.getPlafond() - transfereRequest.getMontant());
