@@ -329,10 +329,10 @@ public class TransfereService
             System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
         }
          */
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(pin);
+        JSONObject json = new JSONObject();
+        json.put("pin", pin);
 
-        return json;
+        return json.toJSONString();
     }
 
     public Transfere searchTransfereByRefAndClientDonneur(String reference, String cinDonneur)
